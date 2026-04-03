@@ -13,7 +13,7 @@ import vn.iostar.entity.Category;
 import vn.iostar.repository.CategoryRepository;
 @Service
 public class CategoryServiceImpl implements CategoryService {
-	
+
 	@Autowired
 	CategoryRepository categoryRepository;
 
@@ -26,46 +26,5 @@ public class CategoryServiceImpl implements CategoryService {
 	public Optional<Category> findByName(String name) {
 		return categoryRepository.findByName(name);
 	}
-
-	@Override
-	public Page<Category> findByNameContaining(String name, Pageable pageable) {
-		return categoryRepository.findByNameContaining(name, pageable);
-	}
-
-	@Override
-	public <S extends Category> S save(S entity) {
-		return categoryRepository.save(entity);
-	}
-
-	@Override
-	public List<Category> findAll(Sort sort) {
-		return categoryRepository.findAll(sort);
-	}
-
-	@Override
-	public Page<Category> findAll(Pageable pageable) {
-		return categoryRepository.findAll(pageable);
-	}
-
-	@Override
-	public List<Category> findAll() {
-		return categoryRepository.findAll();
-	}
-
-	@Override
-	public Optional<Category> findById(Long id) {
-		return categoryRepository.findById(id);
-	}
-
-	@Override
-	public long count() {
-		return categoryRepository.count();
-	}
-
-	@Override
-	public void deleteById(Long id) {
-		categoryRepository.deleteById(id);
-	}
-	
 	
 }
