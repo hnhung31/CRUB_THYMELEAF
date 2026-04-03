@@ -32,33 +32,6 @@ public class CategoryController {
     public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
-    
-    @GetMapping("/add")
-    public String add(Model model) {
-        CategoryModel category = new CategoryModel();
-        category.setIsEdit(false);
-        model.addAttribute("category", category);
-        return "admin/category/add";
-    }
-
-    @PostMapping("/save")
-    public ModelAndView save(ModelMap model,
-                             @Valid @ModelAttribute("category") CategoryModel categoryModel, BindingResult bindingResult) {
-        if(bindingResult.hasErrors()) {
-            return new ModelAndView("admin/category/add");
-        }
-        Category entity = new Category();
-        BeanUtils.copyProperties(categoryModel, entity);
-        categoryService.save(entity);
-        String message="";
-        if(categoryModel.getIsEdit() == true) {
-            message="Category is Edited!!!";
-        }else{
-            message="Category is Saved!!!";
-        }
-        model.addAttribute("message", message);
-        return new ModelAndView("forward:/admin/categories/searchpaginated", model);
-    }
 
     @GetMapping("/edit")
     public ModelAndView edit(ModelMap model, @RequestParam("id") Long categoryId) {
