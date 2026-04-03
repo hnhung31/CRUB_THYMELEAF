@@ -32,6 +32,7 @@ public class CategoryController {
     public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
+    
     @GetMapping("/add")
     public String add(Model model) {
         CategoryModel category = new CategoryModel();
@@ -39,6 +40,7 @@ public class CategoryController {
         model.addAttribute("category", category);
         return "admin/category/add";
     }
+
     @PostMapping("/save")
     public ModelAndView save(ModelMap model,
                              @Valid @ModelAttribute("category") CategoryModel categoryModel, BindingResult bindingResult) {
@@ -57,6 +59,7 @@ public class CategoryController {
         model.addAttribute("message", message);
         return new ModelAndView("forward:/admin/categories/searchpaginated", model);
     }
+
     @GetMapping("/edit")
     public ModelAndView edit(ModelMap model, @RequestParam("id") Long categoryId) {
         Optional<Category> optCategory = categoryService.findById(categoryId);
@@ -72,6 +75,7 @@ public class CategoryController {
         model.addAttribute("message", "Category is not exist!!!");
         return new ModelAndView("forward:/admin/categories/searchpaginated", model);
     }
+
     @GetMapping("delete")
     public ModelAndView delete(ModelMap model,@RequestParam("id") Long categoryId) {
         categoryService.deleteById(categoryId);
