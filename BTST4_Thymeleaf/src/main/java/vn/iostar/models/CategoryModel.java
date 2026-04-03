@@ -11,6 +11,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+//Cac field của category Model
 public class CategoryModel implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -18,10 +19,7 @@ public class CategoryModel implements Serializable {
 
     @NotEmpty(message = "Không được bỏ trống")
     private String name;
-
     private String images;
-
     private int status;
-
     private Boolean isEdit=false;
 }
